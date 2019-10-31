@@ -1,0 +1,53 @@
+.tool_head{
+    position : fixed;
+    top:0;
+    left:0;
+    width:100%;
+    background-color: lawngreen;
+    height : 56px;
+}
+
+.tool_nav{
+    display:flex;
+    align-items: center;
+    height:100%;
+}
+
+.spacer{
+    flex: 1;
+}
+
+.tool_items ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.tool_items li{
+    padding: 0 0.5rem;
+    margin: auto;
+}
+
+.tool_logo{
+    margin-left: 0.5rem;
+}
+
+.tool_logo a{
+    color : white;
+    text-decoration: none;
+}
+.tool_logo a:hover,
+.tool_logo a:active{
+    color: blue;
+}
+
+.tool_items a{
+    color: white;
+    text-decoration: none;
+}
+
+.tool_items a:hover,
+.tool_items a:active{
+    color: orange;
+}
