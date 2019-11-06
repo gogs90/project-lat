@@ -61,16 +61,7 @@ class LocalS extends Component{
         alert("Data Berhasil Di Simpan!")
     }
 
-    // lokal = () => {
-    //     localStorage.setItem("data", JSON.stringify(this.state.data))
-    // }
-
-    // pertama = () => {
-    //     localStorage.setItem("data", JSON.stringify(this.state.dataAwal))
-    // }
-
     componentDidUpdate(prevProps, prevState){
-        // if(prevState.dataAwal !== this.state.data){
         if(this.state.simpan === true){
             console.log("nilai sebelum simpan - " + this.state.simpan)
             localStorage.setItem("data",JSON.stringify(this.state.data))
@@ -78,11 +69,6 @@ class LocalS extends Component{
             this.setState({simpan : false})
             console.log("nilai setelah simpan - " + this.state.simpan)
         }
-        // else 
-        // if(prevState.hapus !== this.state.hapus){
-        //     localStorage.clear()
-        //     console.log("Did Update jalan hapus")
-        // }
     }
 
 
@@ -142,6 +128,7 @@ class LocalS extends Component{
             )
         })
     }
+
 
     render(){
         console.log("render tampilan")

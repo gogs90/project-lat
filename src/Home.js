@@ -1,8 +1,5 @@
 import React from 'react';
 import Toolbar from './Component/Toolbar/Toolbar';
-// import {render} from "react-dom"
-// import {Router, Route} from "react-router";
-// import SideDrawer from './Component/SideDrawer/SideDrawer';
 import SideDrawer from './Component/SideDrawer/SideDrawer';
 import Backdrop from './Component/Backdrop/Backdrop';
 import LocalS from './Biod/LocalS';
@@ -33,9 +30,6 @@ class Home extends React.Component {
         }
         return (
             <div style={{height: '100%'}}>
-                {/* <Router>
-                    <Route path={"input"} component={LocalS}/>
-                </Router> */}
                 <Toolbar drawerClick={this.drawerToggle}/>
                 {sideDrawer}
                 {backdrop}
@@ -52,9 +46,6 @@ class Home extends React.Component {
                     <Router>
                         <div className="tool_items">
                             <ul>
-                                {/* <li>
-                                    <Link to={"/"}>Home</Link>
-                                </li> */}
                                 <li>
                                     <Link to={"/input"}>Input Data</Link>
                                 </li>
@@ -71,7 +62,7 @@ class Home extends React.Component {
                                     <LocalS/>
                                 </Route>
                                 <Route path="/show" >
-                                    <Tabel/>
+                                    <Tabel view="standar"/>
                                 </Route>
                             </Switch>
                         </div>
