@@ -33,7 +33,7 @@ class Home extends React.Component {
                 <Toolbar drawerClick={this.drawerToggle}/>
                 {sideDrawer}
                 {backdrop}
-                <main style={ {marginTop: '64px' } }>
+                <main style={ {marginTop: '60px' } }>
                     <div className="areaTeks">
                         <marquee>
                             <label>
@@ -42,29 +42,31 @@ class Home extends React.Component {
                         </marquee>
                     </div>
                     <hr></hr>
-                    <div className="spacer" />
+                    {/* <div className="spacer" /> */}
                     <Router>
-                        <div className="tool_items">
-                            <ul>
-                                <li>
-                                    <Link to={"/input"}>Input Data</Link>
-                                </li>
-                                <li>
-                                    <Link to={"/show"}>Show Data</Link>
-                                </li>
-                            </ul>
+                        <div className="menu_head">
+                            <div className="tool_items">
+                                <ul>
+                                    <li>
+                                        <Link to={"/input"}>Input Data</Link>
+                                    </li>
+                                    <li>
+                                        <Link to={"/show"}>Show Data</Link>
+                                    </li>
+                                </ul>
 
-                            <Switch>
-                                {/* <Route path="/">
-                                    <Home/>
-                                </Route> */}
-                                <Route path="/input" >
-                                    <LocalS/>
-                                </Route>
-                                <Route path="/show" >
-                                    <Tabel view="standar"/>
-                                </Route>
-                            </Switch>
+                                <Switch>
+                                    {/* <Route path="/">
+                                        <Home/>
+                                    </Route> */}
+                                    <Route path="/input" >
+                                        <LocalS/>
+                                    </Route>
+                                    <Route path="/show" >
+                                        <Tabel view="standar"/>
+                                    </Route>
+                                </Switch>
+                            </div>
                         </div>
                     </Router>
                 </main>

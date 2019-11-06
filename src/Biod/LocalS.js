@@ -42,7 +42,10 @@ class LocalS extends Component{
 
     addNama = (e) => {
         e.preventDefault()
-        let key = localStorage.getItem("data") ? JSON.parse(localStorage.getItem("data")) : [];
+        if(this.state.nama === ""){
+            alert(" Harap lengkapi data !")
+        }else{
+            let key = localStorage.getItem("data") ? JSON.parse(localStorage.getItem("data")) : [];
         var size = key.length + 1;
         this.setState({
                         data : 
@@ -59,6 +62,7 @@ class LocalS extends Component{
                     //  this.lokal,
                      this.setState({nama : ""}), this.setState({umur : ""}), this.setState({hobi : ""}) )
         alert("Data Berhasil Di Simpan!")
+        }
     }
 
     componentDidUpdate(prevProps, prevState){
@@ -139,7 +143,7 @@ class LocalS extends Component{
                 <form>
                 {/* <h1>Warna favoritku adalah {this.state.warnafavorit}</h1> */}
                 <h1>INPUT BIODATA</h1>
-                <div className="grid-container">
+                {/* <div className="grid-container">
                     <div className="grid-item">Masukkan Nama :</div>
                     <div className="grid-item"><input className="w3-round-large" name="nama" value={this.state.nama} placeholder="Masukkan nama" onChange={this.handleChangeK}/></div>
                     <div className="grid-item"></div>
@@ -148,7 +152,20 @@ class LocalS extends Component{
                     <div className="grid-item"></div>
                     <div className="grid-item">Masukkan Hobi :</div>
                     <div className="grid-item"><input className="w3-round-large" name="hobi" value={this.state.hobi} placeholder="Masukkan hobi" onChange={this.handleChangeK}/></div>
+                </div> */}
+                <div className="kotakInput">
+                    <div className="kotakKiri">Masukkan Nama :</div>
+                    <div className="kotakKanan"><input className="w3-round-large" name="nama" value={this.state.nama} placeholder="Masukkan nama" onChange={this.handleChangeK}/></div>
                 </div>
+                <div className="kotakInput">
+                    <div className="kotakKiri">Masukkan Umur :</div>
+                    <div className="koatakKanan"><input className="w3-round-large" name="umur" value={this.state.umur} placeholder="Masukkan umur" onChange={this.handleChangeK}/></div>
+                </div>
+                <div className="kotakInput">
+                    <div className="kotakKiri">Masukkan Hobi :</div>
+                    <div className="kotakKanan"><input className="w3-round-large" name="hobi" value={this.state.hobi} placeholder="Masukkan hobi" onChange={this.handleChangeK}/></div>
+                </div>
+               
                 </form>
                 <br></br>
                 <div className="center">

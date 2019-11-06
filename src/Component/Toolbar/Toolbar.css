@@ -7,6 +7,23 @@
     height : 56px;
 }
 
+.menu_head{
+    /* position: fixed; */
+    top:100px;
+    margin:auto;
+    /* left:100px; */
+    width:50%;
+    background-color: rgb(241, 238, 52);
+    height : 22px;
+    border: 1px solid black;
+}
+
+@media only screen and (max-width: 768px){
+    .menu_head{
+        width: 100%;
+    }
+}
+
 .tool_nav{
     display:flex;
     align-items: center;
@@ -43,7 +60,7 @@
 }
 
 .tool_items a{
-    color: white;
+    color: rgb(0, 0, 0);
     text-decoration: none;
 }
 
