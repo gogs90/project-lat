@@ -51,6 +51,9 @@ class Home extends React.Component {
                                         <Link to={"/input"}>Input Data</Link>
                                     </li>
                                     <li>
+                                        |
+                                    </li>
+                                    <li>
                                         <Link to={"/show"}>Show Data</Link>
                                     </li>
                                 </ul>
@@ -60,7 +63,7 @@ class Home extends React.Component {
                                         <Home/>
                                     </Route> */}
                                     <Route path="/input" >
-                                        <LocalS/>
+                                        <LocalS view="iseng"/>
                                     </Route>
                                     <Route path="/show" >
                                         <Tabel view="standar"/>

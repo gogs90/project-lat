@@ -43,7 +43,11 @@ class LocalS extends Component{
     addNama = (e) => {
         e.preventDefault()
         if(this.state.nama === ""){
-            alert(" Harap lengkapi data !")
+            alert(" Harap isi nama !")
+        }else if(this.state.umur === ""){
+            alert(" Harap isi umur !")
+        }else if(this.state.hobi === "" ){
+            alert(" Harap isi hobi !")
         }else{
             let key = localStorage.getItem("data") ? JSON.parse(localStorage.getItem("data")) : [];
         var size = key.length + 1;
@@ -134,25 +138,14 @@ class LocalS extends Component{
     }
 
 
-    render(){
+    render(props){
         console.log("render tampilan")
         return(
         <div>
             {/* <Toolbar/> */}
             <div className="kotakBio">    
                 <form>
-                {/* <h1>Warna favoritku adalah {this.state.warnafavorit}</h1> */}
                 <h1>INPUT BIODATA</h1>
-                {/* <div className="grid-container">
-                    <div className="grid-item">Masukkan Nama :</div>
-                    <div className="grid-item"><input className="w3-round-large" name="nama" value={this.state.nama} placeholder="Masukkan nama" onChange={this.handleChangeK}/></div>
-                    <div className="grid-item"></div>
-                    <div className="grid-item">Masukkan Umur :</div>
-                    <div className="grid-item"><input className="w3-round-large" name="umur" value={this.state.umur} placeholder="Masukkan umur" onChange={this.handleChangeK}/></div>
-                    <div className="grid-item"></div>
-                    <div className="grid-item">Masukkan Hobi :</div>
-                    <div className="grid-item"><input className="w3-round-large" name="hobi" value={this.state.hobi} placeholder="Masukkan hobi" onChange={this.handleChangeK}/></div>
-                </div> */}
                 <div className="kotakInput">
                     <div className="kotakKiri">Masukkan Nama :</div>
                     <div className="kotakKanan"><input className="w3-round-large" name="nama" value={this.state.nama} placeholder="Masukkan nama" onChange={this.handleChangeK}/></div>
@@ -170,8 +163,6 @@ class LocalS extends Component{
                 <br></br>
                 <div className="center">
                     <button className="button button4" onClick={this.addNama}>Simpan</button>
-                    {/* <button className="button button4" onClick={this.handleShow}>Tampil / Tutup</button>
-                    <button className="button button4" onClick={this.handleDelete}>Hapus</button><br></br> */}
                     <input readOnly hidden/><br></br>
                     <br></br><input readOnly hidden/>
                 </div>

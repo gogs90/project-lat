@@ -1,25 +1,65 @@
-import React from 'react';
+import React, { Component } from 'react';
 import MaterialTable from "material-table";
-// import { Icon } from '@material-ui/core';
-  
-// import { makeStyles } from '@material-ui/core/styles';
-// import Table from '@material-ui/core/Table';
-// import TableBody from '@material-ui/core/TableBody';
-// import TableCell from '@material-ui/core/TableCell';
-// import TableHead from '@material-ui/core/TableHead';
-// import TableRow from '@material-ui/core/TableRow';
-// import Paper from '@material-ui/core/Paper';
 
+class Tabels extends Component {
+    constructor(props){
+        super(props)
+        this.tabledata = this.tabledata.bind(this)
+    }
 
+    state={
+        data : localStorage.getItem("data") ? JSON.parse(localStorage.getItem("data")) : []
+    }
+    
+    tableHeader() {
+        let header = Object.keys(this.state.data[0])
+        return header.map((key, index) => {
+           return <th key={index}>{key.toUpperCase()}</th>
+           
+        })
+     }
+
+    tabledata(){
+        return this.state.data.map( (isi, index) =>{
+            const {no,nama,umur,hobi} = isi
+            // var a = index +1;
+            return(
+                <tr key={index}>    
+                    <td>{no}</td>
+                    <td>{nama}</td>
+                    <td>{umur}</td>
+                    <td>{hobi}</td>
+                    <td><button>Edit</button></td>
+                    {/* <td><button onClick={this.handleDelTD.bind(this,no )}>Delete</button></td> */}
+                    {/* <button onClick={this.onDeleteHandle.bind(this, item.id)}>Delete</button> */}
+                </tr>
+            )
+        })
+    }
+    render(){
+        return(
+            <table className="dataTable" border="1" width="100%" >
+                <tbody>
+                    {/* <tr>{this.tableHeader()}</tr> */}
+                    {/* <tr width="15%" background-color="green">
+                        <td>No</td><td>Nama</td><td>Umur</td><td>Hobi</td>
+                    </tr> */}{this.tableHeader()}
+                    {this.tabledata()}
+                </tbody>    
+            </table>
+        )
+    }
+}
 
 function Tabel(props){
+    let datas = JSON.parse(localStorage.getItem("data"));
     const [state, setState] = React.useState({
         columns: [
           { title: 'Name', field: 'nama' },
           { title: 'Umur', field: 'umur' },
-          { title: 'Hobi', field: 'hobi'},
+          { title: 'Hobi', field: 'hobi'}
         ],
-        tab: localStorage.getItem("data") ? JSON.parse(localStorage.getItem("data")) : []
+        tab: localStorage.getItem("data") ? JSON.parse(localStorage.getItem("data")) : [],
     })
 
     return(
@@ -27,13 +67,11 @@ function Tabel(props){
             <div>
                 <table className="dataTable" border="1" width="100%" >
                     <tbody>
-                        <tr width="15%" background-color="green">
-                            <td>No</td><td>Nama</td><td>Umur</td><td>Hobi</td>
-                        </tr>
+                        <Tabels></Tabels>
                     </tbody>    
                 </table>
             </div>
-            <MaterialTable
+            {/* <MaterialTable
                 columns={state.columns}
                 data={state.tab}
                 title="Data Biodata "
@@ -79,7 +117,7 @@ function Tabel(props){
                         }, 600);
                     }),
                 }}
-            />
+            /> */}
         </React.Fragment>
     )
 }
