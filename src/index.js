@@ -5,10 +5,12 @@ import './index.css';
 // import App from './App';
 // import LocalS from './Biod/LocalS';
 import Home from './Home'
+import Root from './Component/Root/Root'
 import * as serviceWorker from './serviceWorker';
 
 // ReactDOM.render(<App />, document.getElementById('root'));
-ReactDOM.render(<Home/>,document.getElementById('home'));
+// ReactDOM.render(<Home/>,document.getElementById('home'));
+ReactDOM.render(<Root/>,document.getElementById('home'));
 // ReactDOM.render(<LocalS/>, document.getElementById('tampil'));
 
 

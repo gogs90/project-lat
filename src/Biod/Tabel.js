@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import MaterialTable from "material-table";
+import Edit from './edit';
+import { BrowserRouter as Router,Switch,Route,Link } from "react-router-dom";
+import { Redirect } from 'react-router-dom';
 
 class Tabels extends Component {
     constructor(props){
@@ -8,14 +11,14 @@ class Tabels extends Component {
     }
 
     state={
-        data : localStorage.getItem("data") ? JSON.parse(localStorage.getItem("data")) : []
+        data : localStorage.getItem("data") ? JSON.parse(localStorage.getItem("data")) : [],
+        redirect : true
     }
     
     tableHeader() {
         let header = Object.keys(this.state.data[0])
         return header.map((key, index) => {
-           return <th key={index}>{key.toUpperCase()}</th>
-           
+           return <th key={index}>{key.toUpperCase()}</th>  
         })
      }
 
@@ -29,9 +32,23 @@ class Tabels extends Component {
                     <td>{nama}</td>
                     <td>{umur}</td>
                     <td>{hobi}</td>
-                    <td><button>Edit</button></td>
-                    {/* <td><button onClick={this.handleDelTD.bind(this,no )}>Delete</button></td> */}
-                    {/* <button onClick={this.onDeleteHandle.bind(this, item.id)}>Delete</button> */}
+                    <td>
+                        <Router>
+                            <div>
+                                <div>
+                                {/* <Link to={`/edit`}> Edit </Link> */}
+                                    <Link to={"/edit"}>
+                                        <button>Edit Data</button>
+                                    </Link>
+                                    <Switch>
+                                        <Route path="/edit" >
+                                            <Edit/>
+                                        </Route>
+                                    </Switch>
+                                </div>
+                            </div>
+                        </Router>
+                    </td>
                 </tr>
             )
         })
@@ -40,10 +57,7 @@ class Tabels extends Component {
         return(
             <table className="dataTable" border="1" width="100%" >
                 <tbody>
-                    {/* <tr>{this.tableHeader()}</tr> */}
-                    {/* <tr width="15%" background-color="green">
-                        <td>No</td><td>Nama</td><td>Umur</td><td>Hobi</td>
-                    </tr> */}{this.tableHeader()}
+                    {this.tableHeader()}
                     {this.tabledata()}
                 </tbody>    
             </table>
@@ -52,7 +66,6 @@ class Tabels extends Component {
 }
 
 function Tabel(props){
-    let datas = JSON.parse(localStorage.getItem("data"));
     const [state, setState] = React.useState({
         columns: [
           { title: 'Name', field: 'nama' },
@@ -64,14 +77,14 @@ function Tabel(props){
 
     return(
         <React.Fragment>
-            <div>
+            {/* <div>
                 <table className="dataTable" border="1" width="100%" >
                     <tbody>
                         <Tabels></Tabels>
                     </tbody>    
                 </table>
-            </div>
-            {/* <MaterialTable
+            </div> */}
+            <MaterialTable
                 columns={state.columns}
                 data={state.tab}
                 title="Data Biodata "
@@ -117,7 +130,7 @@ function Tabel(props){
                         }, 600);
                     }),
                 }}
-            /> */}
+            />
         </React.Fragment>
     )
 }
