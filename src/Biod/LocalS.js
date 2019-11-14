@@ -5,6 +5,9 @@ import './LocalS.css';
 import Tabel from './Tabel'
 // import Toolbar from '../Component/Toolbar/Toolbar';
 // import toolbar from '../Component/Toolbar/Toolbar';
+import {connect} from 'react-redux'
+import Box from '@material-ui/core/Box'
+import { Container,Typography    } from '@material-ui/core';
 
 class LocalS extends Component{
     constructor(props){
@@ -62,14 +65,15 @@ class LocalS extends Component{
                                 hobi : this.state.hobi
                             }
                         ]
-                    },this.setState({simpan : !this.state.simpan}),
-                    //  this.lokal,
-                     this.setState({nama : ""}), this.setState({umur : ""}), this.setState({hobi : ""}) )
+                    },
+                    this.setState({simpan : !this.state.simpan}),
+                    this.setState({nama : ""}), this.setState({umur : ""}), this.setState({hobi : ""}) )
         alert("Data Berhasil Di Simpan!")
+        // {this.props.addUser}
         }
     }
 
-    componentDidUpdate(prevProps, prevState){
+    componentDidUpdate(){
         if(this.state.simpan === true){
             console.log("nilai sebelum simpan - " + this.state.simpan)
             localStorage.setItem("data",JSON.stringify(this.state.data))
@@ -143,48 +147,66 @@ class LocalS extends Component{
         return(
         <div>
             {/* <Toolbar/> */}
-            <div className="kotakBio">    
-                <form>
-                <h1>INPUT BIODATA</h1>
-                <div className="kotakInput">
-                    <div className="kotakKiri">Masukkan Nama :</div>
-                    <div className="kotakKanan"><input className="w3-round-large" name="nama" value={this.state.nama} placeholder="Masukkan nama" onChange={this.handleChangeK}/></div>
-                </div>
-                <div className="kotakInput">
-                    <div className="kotakKiri">Masukkan Umur :</div>
-                    <div className="koatakKanan"><input className="w3-round-large" name="umur" value={this.state.umur} placeholder="Masukkan umur" onChange={this.handleChangeK}/></div>
-                </div>
-                <div className="kotakInput">
-                    <div className="kotakKiri">Masukkan Hobi :</div>
-                    <div className="kotakKanan"><input className="w3-round-large" name="hobi" value={this.state.hobi} placeholder="Masukkan hobi" onChange={this.handleChangeK}/></div>
-                </div>
-               
-                </form>
-                <br></br>
-                <div className="center">
-                    <button className="button button4" onClick={this.addNama}>Simpan</button>
-                    <input readOnly hidden/><br></br>
-                    <br></br><input readOnly hidden/>
-                </div>
-            </div>
-            <div className="kotakData">
-                {this.state.statusTable && 
-                    // <table className="dataTable" border="1" width="100%" >
-                    //     <tbody>
-                    //         {/* <tr>{this.tableHeader()}</tr> */}
-                    //         <tr width="15%" background-color="green">
-                    //             <td>No</td><td>Nama</td><td>Umur</td><td>Hobi</td>
-                    //         </tr>
-                    //         {this.tabledata()}
-                    //     </tbody>    
-                    // </table>
-                // ==================================================
-                <Tabel isiData={JSON.parse(localStorage.getItem("data"))} /> 
-                }
-             </div>
+            <Container fixed>
+                <Typography style={{ backgroundColor: '#cfe8fc' }} >
+                    <div className="kotakBio">    
+                        <form>
+                        <h1>INPUT BIODATA</h1>
+                        <div className="kotakInput">
+                            <div className="kotakKiri">Masukkan Nama :</div>
+                            <div className="kotakKanan"><input className="w3-round-large" name="nama" value={this.state.nama} placeholder="Masukkan nama" onChange={this.handleChangeK}/></div>
+                        </div>
+                        <div className="kotakInput">
+                            <div className="kotakKiri">Masukkan Umur :</div>
+                            <div className="koatakKanan"><input className="w3-round-large" name="umur" value={this.state.umur} placeholder="Masukkan umur" onChange={this.handleChangeK}/></div>
+                        </div>
+                        <div className="kotakInput">
+                            <div className="kotakKiri">Masukkan Hobi :</div>
+                            <div className="kotakKanan"><input className="w3-round-large" name="hobi" value={this.state.hobi} placeholder="Masukkan hobi" onChange={this.handleChangeK}/></div>
+                        </div>
+                    
+                        </form>
+                        <br></br>
+                        <div className="center">
+                            <button className="button button4" onClick={this.addNama}>Simpan</button>
+                            {/* <button className="button button4" onClick={this.props.addUser}>Cek R   edux</button> */}
+                        </div>
+                        {/* <p>jumlah Biodata saat ini : {this.props.user} </p>
+                        <p>Jumlah Biodata yang pernah di buat : {this.props.created}</p> */}
+                    </div>
+                    <div className="kotakData">
+                        {this.state.statusTable && 
+                            // <table className="dataTable" border="1" width="100%" >
+                            //     <tbody>
+                            //         {/* <tr>{this.tableHeader()}</tr> */}
+                            //         <tr width="15%" background-color="green">
+                            //             <td>No</td><td>Nama</td><td>Umur</td><td>Hobi</td>
+                            //         </tr>
+                            //         {this.tabledata()}
+                            //     </tbody>    
+                            // </table>
+                        // ==================================================
+                        <Tabel isiData={JSON.parse(localStorage.getItem("data"))} /> 
+                        }
+                    </div>
+                </Typography>
+             </Container>
         </div>
         )      
     }
 }
 
-export default LocalS;
+const mapStateToProps = (state) => {
+    return{
+        user: state.totalUser,
+        created: state.totalCreated
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return{
+        addUser: () => dispatch({type: 'ADD_USER'})
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(LocalS);

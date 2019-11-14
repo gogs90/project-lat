@@ -6,11 +6,38 @@ import './index.css';
 // import LocalS from './Biod/LocalS';
 import Home from './Home'
 import Root from './Component/Root/Root'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
 import * as serviceWorker from './serviceWorker';
+
+
+let key = localStorage.getItem("data") ? JSON.parse(localStorage.getItem("data")) : [];
+
+const globalState = {
+    totalUser: key.length,
+    totalCreated: 0
+}
+
+const rootReducer = (state = globalState, action) => {
+    if(action.type === 'ADD_USER'){
+        return{
+            ...state,
+            totalCreated: state.totalCreated + 1
+        }
+    }
+    return state;
+}
+
+//Store
+const store = createStore(rootReducer);
+
 
 // ReactDOM.render(<App />, document.getElementById('root'));
 // ReactDOM.render(<Home/>,document.getElementById('home'));
-ReactDOM.render(<Root/>,document.getElementById('home'));
+ReactDOM.render(
+<Provider store={store}>
+    <Root/>
+</Provider>,document.getElementById('home'));
 // ReactDOM.render(<LocalS/>, document.getElementById('tampil'));
 
 
