@@ -22,6 +22,9 @@
     .menu_head{
         width: 100%;
     }
+    .tool_items{
+        width: 100px;
+    }
 }
 
 .tool_nav{
@@ -31,12 +34,22 @@
 }
 
 .spacer{
-    flex: 1;
+    flex: 0.5;
+}
+
+.appBars{
+    width: 100%;
+}
+.tool_ui{
+    margin: auto;
+    background-color: yellow;
+    width: 80%;
+    /* flex: 1; */
 }
 
 .tool_items ul{
     list-style: none;
-    margin: 0;
+    margin: auto;
     padding: 0;
     display: flex;
 }

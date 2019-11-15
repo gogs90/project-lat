@@ -1,19 +1,34 @@
 import React,{Component} from 'react';
 // import '.Biodata/LocalS.css';
 import './LocalS.css';
-// import MaterialTable from "material-table";
+import './LocalS.scss'
 import Tabel from './Tabel'
-// import Toolbar from '../Component/Toolbar/Toolbar';
-// import toolbar from '../Component/Toolbar/Toolbar';
 import {connect} from 'react-redux'
-import Box from '@material-ui/core/Box'
-import { Container,Typography    } from '@material-ui/core';
+import { tsExpressionWithTypeArguments } from '@babel/types';
+
+
+//======
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import Link from '@material-ui/core/Link';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
 
 class LocalS extends Component{
     constructor(props){
         super(props)
-        this.handleShow = this.handleShow.bind(this)
+        // this.handleShow = this.handleShow.bind(this)
     }
+
+    
 
     state={
         no      : '',
@@ -92,84 +107,59 @@ class LocalS extends Component{
         })
     }
 
-    handleShow = (event) => {
-        event.preventDefault()
-        // =================YANG BENER
-        this.setState({
-            statusTable : !this.state.statusTable
-        })
-    }
-
-    handleDelete = (e) => {
-        // e.preventDefault()
-        window.localStorage.clear()
-        // this.setState({
-        //     hapus : !this.state.hapus
-        // })
-        alert("Data berhasil di hapus")
-        this.setState({
-            data : []
-        })
-    }
-
-    // handleDelTD = () => {
-    //     let no = arguments[0]
+    // handleShow = (event) => {
+    //     event.preventDefault()
+    //     // =================YANG BENER
     //     this.setState({
-    //         data : this.state.data.filter(item => {
-    //             if(item.no !== no){
-    //                 return item;
-    //             }
-    //         })
+    //         statusTable : !this.state.statusTable
     //     })
     // }
 
-    tabledata(){
-        return this.state.data.map( (isi, index) =>{
-            const {no,nama,umur,hobi} = isi
-            // var a = index +1;
-            return(
-                <tr key={index}>
-                    <td>{no}</td>
-                    <td>{nama}</td>
-                    <td>{umur}</td>
-                    <td>{hobi}</td>
-                    <td><button>Edit</button></td>
-                    <td><button onClick={this.handleDelTD.bind(this,no )}>Delete</button></td>
-                    {/* <button onClick={this.onDeleteHandle.bind(this, item.id)}>Delete</button> */}
-                </tr>
-            )
-        })
-    }
+    // tabledata(){
+    //     return this.state.data.map( (isi, index) =>{
+    //         const {no,nama,umur,hobi} = isi
+    //         // var a = index +1;
+    //         return(
+    //             <tr key={index}>
+    //                 <td>{no}</td>
+    //                 <td>{nama}</td>
+    //                 <td>{umur}</td>
+    //                 <td>{hobi}</td>
+    //                 <td><button>Edit</button></td>
+    //                 <td><button onClick={this.handleDelTD.bind(this,no )}>Delete</button></td>
+    //                 {/* <button onClick={this.onDeleteHandle.bind(this, item.id)}>Delete</button> */}
+    //             </tr>
+    //         )
+    //     })
+    // }
 
 
     render(props){
         console.log("render tampilan")
+
         return(
-        <div>
-            {/* <Toolbar/> */}
             <Container fixed>
-                <Typography style={{ backgroundColor: '#cfe8fc' }} >
+                
                     <div className="kotakBio">    
-                        <form>
-                        <h1>INPUT BIODATA</h1>
-                        <div className="kotakInput">
-                            <div className="kotakKiri">Masukkan Nama :</div>
-                            <div className="kotakKanan"><input className="w3-round-large" name="nama" value={this.state.nama} placeholder="Masukkan nama" onChange={this.handleChangeK}/></div>
-                        </div>
-                        <div className="kotakInput">
-                            <div className="kotakKiri">Masukkan Umur :</div>
-                            <div className="koatakKanan"><input className="w3-round-large" name="umur" value={this.state.umur} placeholder="Masukkan umur" onChange={this.handleChangeK}/></div>
-                        </div>
-                        <div className="kotakInput">
-                            <div className="kotakKiri">Masukkan Hobi :</div>
-                            <div className="kotakKanan"><input className="w3-round-large" name="hobi" value={this.state.hobi} placeholder="Masukkan hobi" onChange={this.handleChangeK}/></div>
-                        </div>
-                    
+                        <form >
+                            <h1>INPUT BIODATA</h1>
+                            <div className="kotakInput">
+                                <div className="kotakKiri">Masukkan Nama :</div>
+                                <div className="kotakKanan"><input className="w3-input w3-animate-input" name="nama" value={this.state.nama} placeholder="Masukkan nama" onChange={this.handleChangeK} style={{width:260}}/></div>
+                            </div>
+                            <div className="kotakInput">
+                                <div className="kotakKiri">Masukkan Umur :</div>
+                                <div className="kotakKanan"><input className="w3-input w3-animate-input" name="umur" value={this.state.umur} placeholder="Masukkan umur" onChange={this.handleChangeK} style={{width:260}}/></div>
+                            </div>
+                            <div className="kotakInput">
+                                <div className="kotakKiri">Masukkan Hobi :</div>
+                                <div className="kotakKanan"><input className="w3-input w3-animate-input" name="hobi" value={this.state.hobi} placeholder="Masukkan hobi" onChange={this.handleChangeK} style={{width:260}}/></div>
+                            </div>                    
                         </form>
                         <br></br>
                         <div className="center">
                             <button className="button button4" onClick={this.addNama}>Simpan</button>
-                            {/* <button className="button button4" onClick={this.props.addUser}>Cek R   edux</button> */}
+                            {/* <button className="button button4" onClick={this.props.addUser}>Cek Redux</button> */}
                         </div>
                         {/* <p>jumlah Biodata saat ini : {this.props.user} </p>
                         <p>Jumlah Biodata yang pernah di buat : {this.props.created}</p> */}
@@ -189,9 +179,8 @@ class LocalS extends Component{
                         <Tabel isiData={JSON.parse(localStorage.getItem("data"))} /> 
                         }
                     </div>
-                </Typography>
+                
              </Container>
-        </div>
         )      
     }
 }

@@ -1,10 +1,11 @@
 import React from 'react';
-import Toolbar from './Component/Toolbar/Toolbar';
+import Toolbars from './Component/Toolbar/Toolbar';
 import SideDrawer from './Component/SideDrawer/SideDrawer';
 import Backdrop from './Component/Backdrop/Backdrop';
 import LocalS from './Biod/LocalS';
 import Tabel from './Biod/Tabel';
 import {BrowserRouter as Router,Switch,Route,Link} from "react-router-dom";
+import { AppBar,Toolbar, Container,Button } from '@material-ui/core'
 
 class Home extends React.Component {
     state={
@@ -30,20 +31,49 @@ class Home extends React.Component {
         }
         return (
             <div style={{height: '100%'}}>
-                <Toolbar drawerClick={this.drawerToggle}/>
+                <Toolbars drawerClick={this.drawerToggle}/>
                 {sideDrawer}
                 {backdrop}
                 <main style={ {marginTop: '60px' } }>
-                    <div className="areaTeks">
-                        <marquee>
-                            <label>
-                                Hello! Selamat Datang pada halaman registrasi
-                            </label>
-                        </marquee>
-                    </div>
                     <hr></hr>
                     {/* <div className="spacer" /> */}
-                    <Router>
+                    <AppBar position="static">
+                        <Toolbar className="tool_ui">
+                            <div className="areaTeks">
+                                <label>
+                                    Hello! Selamat Datang pada halaman registrasi
+                                </label>
+                            </div>
+                        </Toolbar>
+                    </AppBar>
+                    <Container maxWidth="md">
+                        <Router>
+                            <div className="menu-head">
+                                <div className="tool_items">
+                                    <ul>
+                                        <li>
+                                            <Button><Link to={"/input"}>Input Data</Link></Button>
+                                        </li>
+                                        <li>
+                                            <Button><Link to={"/show"}>Show Data</Link></Button>
+                                        </li>
+                                        <li>
+                                            <Button><Link to={"/show"}>Show Data</Link></Button>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <Switch>
+                                    <Route path="/input" >
+                                        <LocalS view="iseng"/>
+                                    </Route>
+                                    <Route path="/show" >
+                                        <Tabel view="standar"/>
+                                    </Route>
+                                </Switch>
+                            </div>
+                        </Router>
+                    </Container>
+                    {/* <Router>
                         <div className="menu_head">
                             <div className="tool_items">
                                 <ul>
@@ -59,9 +89,6 @@ class Home extends React.Component {
                                 </ul>
 
                                 <Switch>
-                                    {/* <Route path="/">
-                                        <Home/>
-                                    </Route> */}
                                     <Route path="/input" >
                                         <LocalS view="iseng"/>
                                     </Route>
@@ -71,7 +98,7 @@ class Home extends React.Component {
                                 </Switch>
                             </div>
                         </div>
-                    </Router>
+                    </Router> */}
                 </main>
             </div>
         );
